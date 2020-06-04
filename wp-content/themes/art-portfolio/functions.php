@@ -31,3 +31,31 @@ function theme_register_nav_menu() {
 	register_nav_menu( 'primary', 'Primary Menu' );
 }
 add_action( 'after_setup_theme', 'theme_register_nav_menu' );
+
+// Options page
+if( function_exists('acf_add_options_page') ) {
+
+	acf_add_options_page(array(
+		'page_title' 	=> 'Главные настройки темы',
+		'menu_title'	=> 'Настройки темы',
+		'menu_slug' 	=> 'theme-general-settings',
+		'icon_url' => 'dashicons-images-alt2',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Свойства хедера',
+		'menu_title'	=> 'Шапка сайта',
+		'menu_slug' 	=> 'theme-header-settings',
+		'parent_slug'	=> 'theme-general-settings',
+	));
+
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Свойства футера',
+		'menu_title'	=> 'Подвал сайта',
+		'menu_slug' 	=> 'theme-footer-settings',
+		'parent_slug'	=> 'theme-general-settings',
+	));
+
+}
